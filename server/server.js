@@ -12,8 +12,9 @@ const db = mysql.createConnection({
 
 db.connect();
 
+/******************************************************IMPORTANT READ THIS******************************************************/
 //if auth error then write following code in my sql terminal
-//ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password' ****************************************************************************************
+//ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password' 
 
 
 app.use(cors());

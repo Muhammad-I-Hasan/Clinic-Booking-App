@@ -34,7 +34,7 @@ function App() {
       return;
 
     //do an sql query using axios
-    //Axios.Get();
+    //Axios.fetch or whatever the command is
     //query db given a dr name to find his id
     //join that with a query for appointments
     //this should return Dr's appointments on that date
@@ -67,20 +67,22 @@ function App() {
   return (
     <div className="App">
       <div>
-        <button onClick={(e)=> {setPrac("Dr 1"); setAvail([]); setDate(null)}}>Dr 1</button>
-        <button onClick={(e)=> {setPrac("Dr 2"); setAvail([]); setDate(null)}}>Dr 2</button>
-        <button onClick={(e)=> {setPrac("Dr 3"); setAvail([]); setDate(null)}}>Dr 3</button>
+        <button onClick={(e)=> {setPrac("Dr 1"); setAvail([]); setTime(null); setDate(null)}}>Dr 1</button>
+        <button onClick={(e)=> {setPrac("Dr 2"); setAvail([]); setTime(null); setDate(null)}}>Dr 2</button>
+        <button onClick={(e)=> {setPrac("Dr 3"); setAvail([]); setTime(null); setDate(null)}}>Dr 3</button>
       </div>
 
-      <DatePicker value={date} onChange={(e) => {console.log("gottem123"); getBookedAppointments(e)}}/>
+      <DatePicker value={date} onChange={(e) => {getBookedAppointments(e)}}/>
 
 
       {/* this could be a mui list or something instead see link below*/}
       {/* https://mui.com/material-ui/react-list/ */}
       {avail.map((x) => {
-        {/* map available appointments Here */}
+        {/* map available appointments here */}
         return <button key={x} onClick={() => {setTime(x)}}>{x}</button>
       })}
+      <p>Selected Doctor: {prac}</p>
+      <p>Selected Time: {time}</p>
     </div>
   )
 }
