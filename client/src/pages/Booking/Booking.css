@@ -1,0 +1,37 @@
+.bookingContainer
+{
+  width:100%;
+  background-color: blue;
+  display: flex;
+  /* flex:1; */
+  justify-content: start;
+  
+  align-items: center;
+  flex-flow: column wrap; 
+  /* padding: 2em; */
+
+  /* height: 500px; */
+}
+
+.pracSelect{
+  flex:1;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: yellow;
+  padding:2em;
+}
+
+.datepicker {
+  padding: 5em;
+}
+
+.availableBookingContainer{
+  text-align: center;
+  background-color: red;
+  aspect-ratio: 15 / 16;
+  height: clamp(100px, 20vmin, 20em);
+  padding: 1em;
+  border-radius: 0.5em;
+}
