@@ -1,19 +1,22 @@
 
 import './App.css'
 import Home from "./pages/Home"
+import Booking from "./pages/Booking"
+import Manage from "./pages/Manage"
 import { Routes, Route } from "react-router-dom";
 import Menu from "./components/Menu"
 function App() {
 
   return (
-      // <Routes>
-      //   <Route path="/" element={<Home />}/>
-      //   {/* <Route path="/book" element={<Booking />}/>
-      //   <Route path="/manage" element={<Manage />}/>
-      //   <Route path="/doctors" element={<DoctorView />}/> */}
-      // </Routes>
-      <div className="deez"><Menu /></div>
-      
+      <div className='App'>
+        <Menu />
+        
+        <Routes>  
+          <Route path="/" element={<Home />}/>
+          <Route path="/booking" element={<Booking />}/>
+          <Route path="/manage" element={<Manage />}/>
+        </Routes>
+      </div>
   )
 }
 
