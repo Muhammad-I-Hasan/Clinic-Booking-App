@@ -25,28 +25,8 @@ app.use(cors(corsOptions));
 
 app.use(express.json())
 
-
 app.use("/doctors", doctorRoutes)
 app.use("/patients", patientRoutes)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //get all doctors
 // app.get("/api/doctors", (req,res) => {
