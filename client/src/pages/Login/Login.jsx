@@ -33,7 +33,7 @@ export default function Login() {
     //temporary fix
     await login(formInputs.healthCard);
 
-    navigate(-1);
+    // navigate(-1);
 
     
   };

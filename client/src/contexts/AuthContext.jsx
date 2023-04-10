@@ -25,11 +25,7 @@ export const AuthContextProvider = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  useEffect(()=>{
 
-
-    
-  },[])
 
   useEffect(() => {
 
@@ -39,7 +35,8 @@ export const AuthContextProvider = ({ children }) => {
     const user = JSON.parse(sessionStorage.getItem("user"));
 
     if(user){
-
+      console.log("dispatching")
+      dispatch({ type: "LOGIN", payload: user });
     }else{
       if(location.pathname != "/") {
         sessionStorage.setItem("prevLocation", JSON.stringify(location.pathname));

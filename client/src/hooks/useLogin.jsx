@@ -20,7 +20,7 @@ const useLogin = () =>{
     );
 
 
-    var response = await fetch(
+    const response = await fetch(
       `http://localhost:3001/patients/${healthCard}`,
       {
         method: "GET",
@@ -29,25 +29,25 @@ const useLogin = () =>{
       }
     );
     
-    var json = await response.json();
+    const json = await response.json();
     var temp = JSON.stringify(json)
 
     
-    if (response.ok && temp.length === 0){
-      console.log("creating new patient")
-      response = await fetch(
-        `http://localhost:3001/patients`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ healthCard }),
-        }
-      );
-      json = await response.json();
-      console.log(json)
-    }
+    // if (response.ok && temp.length === 0){
+    //   console.log("creating new patient")
+    //   response = await fetch(
+    //     `http://localhost:3001/patients`,
+    //     {
+    //       method: "POST",
+    //       headers: { "Content-Type": "application/json" },
+    //       body: JSON.stringify({ healthCard }),
+    //     }
+    //   );
+    //   json = await response.json();
+    //   console.log(json)
+    // }
 
-    console.log(json)
+    // console.log(json)
 
 
     if (!response.ok) {
@@ -59,10 +59,11 @@ const useLogin = () =>{
 
 
     if(response.ok){
-
+        sessionStorage.setItem("user", JSON.stringify(json));
         dispatch({ type: "LOGIN", payload: json });
-        setIsLoading(false);
-        setError(null);
+        
+        // setIsLoading(false);
+        // console.log("about to navigate")
         navigate("/");
     }
 
