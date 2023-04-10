@@ -23,12 +23,18 @@
 
 }
 
+@media only screen and (max-width: 700px) {
+  /*For mobile screens*/
+  .login {
+    width: 70%;
+  }
+}
+
 .loginTitle{
   text-align: center;
   display: grid;
   align-items: center;
-  
-  flex:1
+  flex:1;
 }
 
 .loginForm{
@@ -39,4 +45,5 @@
   align-items: center;
   justify-content: space-around;
   /* : 5em; */
+  
 }
