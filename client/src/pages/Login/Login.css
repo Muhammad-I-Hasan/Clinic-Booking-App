@@ -1,0 +1,42 @@
+.loginContainer{
+  width: 100%;
+  height: 100dvh;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightblue;
+
+}
+
+
+
+.login{
+  background-color: aliceblue;
+  border: 0.2em solid coral;
+  border-radius: 1em;
+  aspect-ratio: 12 / 16;
+  width: 45%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.loginTitle{
+  text-align: center;
+  display: grid;
+  align-items: center;
+  
+  flex:1
+}
+
+.loginForm{
+  /* background-color: blue; */
+  flex: 1;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-around;
+  /* : 5em; */
+}
