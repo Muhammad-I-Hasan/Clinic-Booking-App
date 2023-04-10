@@ -22,7 +22,6 @@ const Booking = () => {
               <MobileDatePicker defaultValue={dayjs('2022-04-17')} />
           </div>
 
-
           <div className="availableBookings">
           <AvailableBooking/>
 
