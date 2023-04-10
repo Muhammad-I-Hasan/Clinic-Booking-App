@@ -21,7 +21,6 @@ const Menu = () => {
         <Button href="/">Home</Button>
         <Button href="/booking">Book an Appointment</Button>
         <Button href="/manage">Manage an Appointment</Button>
-        
       </Drawer>
     </>
   ) 
