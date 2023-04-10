@@ -4,8 +4,8 @@ import Menu from "./Menu"
 const Topbar = () => {
 
     return (
-        <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="static">
+        
+          <AppBar position="sticky">
             <Toolbar>
               <Menu /> {/*Custom menu component*/}
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
@@ -13,7 +13,7 @@ const Topbar = () => {
               </Typography>
             </Toolbar>
           </AppBar>
-        </Box>
+        
       );
 }
   
