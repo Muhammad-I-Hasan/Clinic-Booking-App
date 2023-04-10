@@ -30,7 +30,7 @@ CREATE TABLE `appointment` (
   `HCN` int NOT NULL,
   `Prac_ID` int NOT NULL,
   `RNumber` int NOT NULL,
-  `Record_ID` int NOT NULL,
+  `Record_ID` int DEFAULT NULL,
   `Comments` mediumtext,
   PRIMARY KEY (`Time`,`Date`,`HCN`,`Prac_ID`,`RNumber`),
   KEY `Appt_HCN_idx` (`HCN`),
@@ -50,6 +50,7 @@ CREATE TABLE `appointment` (
 
 LOCK TABLES `appointment` WRITE;
 /*!40000 ALTER TABLE `appointment` DISABLE KEYS */;
+INSERT INTO `appointment` VALUES ('11:20 am','April 15 2023',4842485,101,100,NULL,NULL),('11:20 pm','April 15',7953696,104,105,NULL,NULL),('3:30 pm','April 13 2023',4842485,201,100,NULL,NULL);
 /*!40000 ALTER TABLE `appointment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -73,6 +74,7 @@ CREATE TABLE `clinic` (
 
 LOCK TABLES `clinic` WRITE;
 /*!40000 ALTER TABLE `clinic` DISABLE KEYS */;
+INSERT INTO `clinic` VALUES ('2205 51 ST SW Calgary','Glamorgan Clinic');
 /*!40000 ALTER TABLE `clinic` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -102,6 +104,7 @@ CREATE TABLE `department` (
 
 LOCK TABLES `department` WRITE;
 /*!40000 ALTER TABLE `department` DISABLE KEYS */;
+INSERT INTO `department` VALUES (1,'2205 51 ST SW Calgary','General',105),(2,'2205 51 ST SW Calgary','Orthopedics',102),(3,'2205 51 ST SW Calgary','Vaccinations',103),(4,'2205 51 ST SW Calgary','Laser',104);
 /*!40000 ALTER TABLE `department` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -130,6 +133,7 @@ CREATE TABLE `doctor` (
 
 LOCK TABLES `doctor` WRITE;
 /*!40000 ALTER TABLE `doctor` DISABLE KEYS */;
+INSERT INTO `doctor` VALUES (101,1,'Shayan Malik','GP'),(102,2,'Tawfiq Nasim','Orthopedic'),(103,3,'Reginald Topher','Immunology'),(104,4,'Sarah June','Dermatologist'),(105,1,'Abhari Limbu','GP');
 /*!40000 ALTER TABLE `doctor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -154,6 +158,7 @@ CREATE TABLE `nurse` (
 
 LOCK TABLES `nurse` WRITE;
 /*!40000 ALTER TABLE `nurse` DISABLE KEYS */;
+INSERT INTO `nurse` VALUES (201,'Jerry Smith'),(202,'Angelica Liu'),(203,'Kiki Riki'),(204,'James Jiang');
 /*!40000 ALTER TABLE `nurse` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -167,7 +172,7 @@ DROP TABLE IF EXISTS `patient`;
 CREATE TABLE `patient` (
   `HCN` int NOT NULL,
   `Name` varchar(255) DEFAULT NULL,
-  `Phone` int DEFAULT NULL,
+  `Phone` bigint DEFAULT NULL,
   `Address` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`HCN`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -179,6 +184,7 @@ CREATE TABLE `patient` (
 
 LOCK TABLES `patient` WRITE;
 /*!40000 ALTER TABLE `patient` DISABLE KEYS */;
+INSERT INTO `patient` VALUES (3185726,'Ben Rakli',4038832014,'314 13 AVE SE Calgary'),(4842485,'Eli Hilfiger',5874042843,'94 Ricardo ST SW Calgary'),(4876412,'John Smith',4039431358,'2500 University Dr NW Calgary'),(5546813,'Digsy Hull',4038879254,'4921 Not ST SW Calgary'),(7953696,'Salman Malik',5874037734,'832 Franciso ST NW Calgary');
 /*!40000 ALTER TABLE `patient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -226,6 +232,7 @@ CREATE TABLE `practitioner` (
 
 LOCK TABLES `practitioner` WRITE;
 /*!40000 ALTER TABLE `practitioner` DISABLE KEYS */;
+INSERT INTO `practitioner` VALUES (101),(102),(103),(104),(105),(201),(202),(203),(204);
 /*!40000 ALTER TABLE `practitioner` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -253,6 +260,7 @@ CREATE TABLE `room` (
 
 LOCK TABLES `room` WRITE;
 /*!40000 ALTER TABLE `room` DISABLE KEYS */;
+INSERT INTO `room` VALUES (100,'2205 51 ST SW Calgary',1,1),(101,'2205 51 ST SW Calgary',1,1),(105,'2205 51 ST SW Calgary',1,1),(106,'2205 51 ST SW Calgary',1,1),(107,'2205 51 ST SW Calgary',0,1),(201,'2205 51 ST SW Calgary',0,2),(202,'2205 51 ST SW Calgary',0,2),(203,'2205 51 ST SW Calgary',0,2);
 /*!40000 ALTER TABLE `room` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -266,10 +274,13 @@ DROP TABLE IF EXISTS `works_for`;
 CREATE TABLE `works_for` (
   `DNum` int NOT NULL,
   `ID` int NOT NULL,
-  PRIMARY KEY (`DNum`,`ID`),
+  `Location` varchar(255) NOT NULL,
+  PRIMARY KEY (`DNum`,`ID`,`Location`),
   KEY `WF_ID_idx` (`ID`),
+  KEY `WF_Location_idx` (`Location`),
   CONSTRAINT `WF_dnum` FOREIGN KEY (`DNum`) REFERENCES `department` (`DNo`),
-  CONSTRAINT `WF_ID` FOREIGN KEY (`ID`) REFERENCES `nurse` (`ID`)
+  CONSTRAINT `WF_ID` FOREIGN KEY (`ID`) REFERENCES `nurse` (`ID`),
+  CONSTRAINT `WF_Location` FOREIGN KEY (`Location`) REFERENCES `department` (`Location`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -279,6 +290,7 @@ CREATE TABLE `works_for` (
 
 LOCK TABLES `works_for` WRITE;
 /*!40000 ALTER TABLE `works_for` DISABLE KEYS */;
+INSERT INTO `works_for` VALUES (1,201,'2205 51 ST SW Calgary'),(3,201,'2205 51 ST SW Calgary'),(2,202,'2205 51 ST SW Calgary'),(3,202,'2205 51 ST SW Calgary'),(4,202,'2205 51 ST SW Calgary'),(3,203,'2205 51 ST SW Calgary'),(4,203,'2205 51 ST SW Calgary'),(3,204,'2205 51 ST SW Calgary');
 /*!40000 ALTER TABLE `works_for` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -291,4 +303,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-09 20:14:39
+-- Dump completed on 2023-04-09 23:23:32
