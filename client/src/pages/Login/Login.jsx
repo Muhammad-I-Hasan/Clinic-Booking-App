@@ -31,7 +31,6 @@ export default function Login() {
 
 
     //temporary fix
-    localStorage.setItem("user", JSON.stringify({pog:"poggers"}));
     await login(formInputs.username, formInputs.password);
 
     // navigate(-1);

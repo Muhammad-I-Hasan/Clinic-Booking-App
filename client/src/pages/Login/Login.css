@@ -15,7 +15,7 @@
   border: 0.2em solid coral;
   border-radius: 1em;
   aspect-ratio: 12 / 16;
-  width: 45%;
+  width: 30%;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;

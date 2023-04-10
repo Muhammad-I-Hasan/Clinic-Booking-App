@@ -1,36 +1,64 @@
 const express= require('express');
 const app = express();
 const cors = require('cors')
-const mysql = require('mysql');
+const db = require("./database/main.js")
 
-const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "password",
-    database: "clinicdb"
-})
+const patientRoutes = require("./routes/patientRoute.js")
+const doctorRoutes = require("./routes/doctorRoute.js")
 
-db.connect();
+
+//  db
 
 /******************************************************IMPORTANT READ THIS******************************************************/
 //if auth error then write following code in my sql terminal
 //ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password' 
 
-app.use(cors());
+const corsOptions = {
+  origin: '*', // Allow all origins (not recommended for production)
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
+
 app.use(express.json())
 
 
+app.use("/doctors", doctorRoutes)
+app.use("/patients", patientRoutes)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //get all doctors
-app.get("/api/doctors", (req,res) => {
-    const query = "SELECT * FROM doctor";
-    db.query(query, (err, result) => {
-        if (err) { 
-            console.log(err);
-        } else {
-            res.send(result);
-        }
-    });
-})
+// app.get("/api/doctors", (req,res) => {
+//     const query = "SELECT * FROM doctor";
+//     db.query(query, (err, result) => {
+//         if (err) { 
+//             console.log(err);
+//         } else {
+//             res.send(result);
+//         }
+//     });
+// })
 
 //get all nurses
 app.get("/api/nurses", (req,res) => {
@@ -61,21 +89,21 @@ app.get("/api/bookedAppts", (req, res) => {
 })
 
 //create a new patient with given info if needed
-app.post("/api/newpatient", (req, res) => {
-    const HCN = req.body.HCN;
-    const Name = req.body.Name;
-    const Phone = req.body.Phone;
-    const Address = req.body.Address;
-    const query = "INSERT INTO patient (HCN, Name, Phone, Address) VALUES (?,?,?,?)";
-    db.query(query, [HCN, Name, Phone, Address], (err, result) => {
-        if (err) { 
-            console.log(err);
-        } else {
-            console.log(result);
-            res.send(result);
-        }
-    });
-})
+// app.post("/api/newpatient", (req, res) => {
+//     const HCN = req.body.HCN;
+//     const Name = req.body.Name;
+//     const Phone = req.body.Phone;
+//     const Address = req.body.Address;
+//     const query = "INSERT INTO patient (HCN, Name, Phone, Address) VALUES (?,?,?,?)";
+//     db.query(query, [HCN, Name, Phone, Address], (err, result) => {
+//         if (err) { 
+//             console.log(err);
+//         } else {
+//             console.log(result);
+//             res.send(result);
+//         }
+//     });
+// })
 
 //create a new appointment, requires HCN, Time, Date, Prac_id, Rnumber (no Record_ID)
 app.post("/api/newAppt", (req, res) => {

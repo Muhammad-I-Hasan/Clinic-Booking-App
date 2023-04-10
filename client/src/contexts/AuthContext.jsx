@@ -24,17 +24,26 @@ export const AuthContextProvider = ({ children }) => {
   const [authState, dispatch] = useReducer(authReducer, { user: null });
   const navigate = useNavigate();
   const location = useLocation();
-  useEffect(() => {
-    // console.log("current path " + location.pathname)
 
-    const user = JSON.parse(localStorage.getItem("user"));
+  useEffect(()=>{
+
+
+    
+  },[])
+
+  useEffect(() => {
+
+
+    
+    // console.log("current path " + location.pathname)
+    const user = JSON.parse(sessionStorage.getItem("user"));
 
     if(user){
-      
+      console.log("have user")
 
     }else{
       if(location.pathname != "/") {
-        localStorage.setItem("prevLocation", JSON.stringify(location.pathname));
+        sessionStorage.setItem("prevLocation", JSON.stringify(location.pathname));
         navigate("/login");
         // if (location.pathname == "/login") {
 

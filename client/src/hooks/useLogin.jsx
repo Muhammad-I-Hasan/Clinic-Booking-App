@@ -9,14 +9,15 @@ const useLogin = () =>{
   const navigate = useNavigate();
 
 
-  const login = (healthCard) =>{
+  const login = async (healthCard) =>{
 
     setIsLoading(true);
     setError(null);
+    // sessionStorage.setItem("user", JSON.stringify({pog:"poggers"}));
 
-    // console.log(
-    //   "CALLED TO: " + `${import.meta.env.VITE_REACT_APP_API_URL}users/login`
-    // );
+    console.log(
+      "CALLED TO: " + `${import.meta.env.VITE_REACT_APP_API_URL}users/login`
+    );
 
 
     // const response = await fetch(
@@ -40,7 +41,7 @@ const useLogin = () =>{
     //   setIsLoading(false);
     //   navigate("/");
     // }
-    const prevState = localStorage.getItem("prevLocation");
+    const prevState = sessionStorage.getItem("prevLocation");
     // console.log("prev Location "  + prevState)
     navigate("/")
   };
