@@ -7,10 +7,12 @@ const db = require("../database/main")
 const getPatient = async (req, res) => {
   const { HCN } = req.params;
   const query = "SELECT * FROM patient WHERE HCN = ? ;";
+  
   db.query(query,[HCN], (err, result) => {
       if (err) { 
           console.log(err);
       } else {
+        // console.log("poggers")
           res.send(result);
       }
   });
@@ -18,7 +20,7 @@ const getPatient = async (req, res) => {
 
 const getPatients = async (req, res) => {
   const query = "SELECT * FROM patient";
-  db.query(query,[HCN], (err, result) => {
+  db.query(query, (err, result) => {
       if (err) { 
           console.log(err);
       } else {
@@ -33,7 +35,10 @@ const createPatient = async (req, res) => {
   const Phone = req.body.Phone;
   const Address = req.body.Address;
   const query = "INSERT INTO patient (HCN, Name, Phone, Address) VALUES (?,?,?,?)";
+
   db.query(query, [HCN, Name, Phone, Address], (err, result) => {
+            console.log("poggers")
+
     if (err) {
       console.log(err);
     } else {
@@ -44,4 +49,25 @@ const createPatient = async (req, res) => {
 
 }
 
-module.exports = { getPatient, getPatients, createPatient }
+
+const loginPatient = async (req,res) =>{
+
+
+  const { HCN } = req.body;
+
+  const query = "SELECT * FROM patient WHERE HCN = ? ;";
+  db.query(query,[HCN], (err, result) => {
+
+
+  })
+}
+
+const deletePatient = (req, res) =>{ 
+
+}
+
+const updatePatient = (req, res) =>{
+
+}
+
+module.exports = { getPatient, getPatients, createPatient, loginPatient }

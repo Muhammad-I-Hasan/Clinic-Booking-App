@@ -39,7 +39,6 @@ export const AuthContextProvider = ({ children }) => {
     const user = JSON.parse(sessionStorage.getItem("user"));
 
     if(user){
-      console.log("have user")
 
     }else{
       if(location.pathname != "/") {

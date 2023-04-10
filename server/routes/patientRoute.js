@@ -4,6 +4,7 @@ const {
   getPatient,
   getPatients,
   createPatient,
+  loginPatient,
 
 
   
@@ -19,6 +20,7 @@ router.get("/:HCN", getPatient);
 
 //create a new patient
 router.post("/", createPatient);
+router.post("/login", loginPatient);
 
 
 

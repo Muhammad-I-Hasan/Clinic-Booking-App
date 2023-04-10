@@ -31,9 +31,9 @@ export default function Login() {
 
 
     //temporary fix
-    await login(formInputs.username, formInputs.password);
+    await login(formInputs.healthCard);
 
-    // navigate(-1);
+    navigate(-1);
 
     
   };
@@ -46,6 +46,7 @@ export default function Login() {
         </h2>
         <form className="loginForm" onSubmit={handleSubmit}>
           <TextField
+            type="number"
             className="textField"
             value={formInputs.healthCard}
             onChange={handleChange}
