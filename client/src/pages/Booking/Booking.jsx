@@ -69,6 +69,15 @@ const Booking = () => {
     
   }
 
+  const bookAppointment = () => {
+    //check if all selected elements are correct before continuing
+    if(HCN === null || HCN.length !== 7 || time === null || date === null || selectedPrac === null) {
+      console.log("not booked")
+      return
+    }
+    console.log(typeof HCN)
+    console.log("booked appointment:", HCN, time, date.format("MMMM DD YYYY"), selectedPrac)
+  }
   //load doctors and nurses on mount
   useEffect(() => {
     
@@ -133,12 +142,12 @@ const Booking = () => {
 
       {/* only show input when previous inputs have been selected. Not sure if we want to keep this*/}
       {(date && time) && 
-      <form className="subForm" onSubmit={()=>bookAppointment}>
+      <form className="subForm" onSubmit={(e)=>{e.preventDefault(); bookAppointment();}}>
         <TextField 
           label="Health Card Number" 
           helperText="Enter a valid 7 digit HCN" 
           value={HCN} 
-          onChange={(e)=>{setHCN(e.target.value);}} 
+          onChange={(e)=>{setHCN(e.target.value); console.log(HCN)}} 
           inputProps={{ 
             inputMode: 'number', 
             pattern: '[0-9]{7}' 
