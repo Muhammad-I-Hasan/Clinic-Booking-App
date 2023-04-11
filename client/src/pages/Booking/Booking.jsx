@@ -156,7 +156,7 @@ const Booking = () => {
 
       {/* only show input when previous inputs have been selected. Not sure if we want to keep this*/}
       {(date && time) && 
-      <form className="subForm" onSubmit={(e)=>{e.preventDefault(); bookAppointment();}}>
+      <form className="subForm" onSubmit={()=>{bookAppointment();}}>
         <TextField 
           label="Health Card Number" 
           helperText="Enter a valid 7 digit HCN" 
