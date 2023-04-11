@@ -34,16 +34,27 @@ const createPatient = async (req, res) => {
   const Name = req.body.Name;
   const Phone = req.body.Phone;
   const Address = req.body.Address;
+  // console.log(`${HCN} ${Name} ${Phone} ${Address}`)
   const query = "INSERT INTO patient (HCN, Name, Phone, Address) VALUES (?,?,?,?)";
 
   db.query(query, [HCN, Name, Phone, Address], (err, result) => {
-            console.log("poggers")
+            // console.log("poggers")
 
     if (err) {
       console.log(err);
     } else {
-      console.log(result);
-      res.send(result);
+      // console.log(result);
+      const query = "SELECT * FROM patient WHERE HCN = ? ;";
+      db.query(query,[HCN], (err, result) => {
+          if (err) { 
+              console.log(err);
+          } else {
+            // console.log("poggers")
+              res.send(result);
+          }
+      });
+
+      // res.send(result);
     }
   });
 

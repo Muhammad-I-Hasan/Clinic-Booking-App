@@ -12,8 +12,10 @@ export const AuthContext = createContext();
 export const authReducer = (state, action) => {
   switch (action.type) {
     case "LOGIN":
+      sessionStorage.setItem("user", JSON.stringify(action.payload));
       return { user: action.payload };
     case "LOGOUT":
+      sessionStorage.removeItem("user");
       return { user: null };
     default:
       return state;
@@ -30,30 +32,30 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
 
 
-    
+
     // console.log("current path " + location.pathname)
     const user = JSON.parse(sessionStorage.getItem("user"));
 
-    if(user){
+    if (user) {
       console.log("dispatching")
       dispatch({ type: "LOGIN", payload: user });
-    }else{
-      if(location.pathname != "/") {
-        sessionStorage.setItem("prevLocation", JSON.stringify(location.pathname));
-        navigate("/login");
-        // if (location.pathname == "/login") {
-
-        //     localStorage.setItem("prevLocation", JSON.stringify("/"));
-        //     navigate("/login");
-
-        //   } else {
-            
-        //   }
-        // console.log("pathname " + location.pathname)
-        // console.log("auth context navigate called")
+    } else {
+      if (location.pathname != "/") {
+        if (location.pathname == "/login") {
+          // sessionStorage.setItem("prevLocation", JSON.stringify(location.pathname));
+          navigate("/login", {state: {prevLocation: location.pathname}});
+          
+        }
+        if (location.pathname == "/signup") {
+          navigate("/signup", {state: {prevLocation: location.pathname == "/signUp" || location.pathname == "/login" ? "/": location.pathname}})
+        }
+        else {
+          navigate("/login" , {state: {prevLocation: location.pathname == "/login" || location.pathname == "/signUp" ? "/": location.pathname}})
+        }
       }
+
     }
-    
+
     // const user = JSON.parse(localStorage.getItem("user"));
     // if (user) {
     //   dispatch({ type: "LOGIN", payload: user });

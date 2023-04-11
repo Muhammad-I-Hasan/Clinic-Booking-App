@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import { useAuthContext } from "./useAuthContext";
 import { useNavigate } from "react-router-dom";
-
+import { useLocation } from "react-router-dom";
 const useLogin = () =>{
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
   const { dispatch } = useAuthContext();
+  const location = useLocation()
+  const prev = location.state?.prevLocation
+  // console.log(prev)
+  // console.log("about to login")
+  // console.log(state)
   const navigate = useNavigate();
 
 
@@ -59,12 +64,12 @@ const useLogin = () =>{
 
 
     if(response.ok){
-        sessionStorage.setItem("user", JSON.stringify(json));
-        dispatch({ type: "LOGIN", payload: json });
+        // sessionStorage.setItem("user", JSON.stringify(json));
+        dispatch({ type: "LOGIN", payload: json[0] });
         
         // setIsLoading(false);
         // console.log("about to navigate")
-        navigate("/");
+        navigate(prev);
     }
 
 

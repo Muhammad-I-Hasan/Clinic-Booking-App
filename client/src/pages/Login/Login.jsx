@@ -70,6 +70,15 @@ export default function Login() {
             >
               Login
             </Button>
+            <Button
+              size="large"
+              color="primary"
+              variant="contained"
+              className="sideButton"
+              onClick={() => navigate("/signup")}
+            >
+              Sign Up
+            </Button>
             
           </div>
       </form>
