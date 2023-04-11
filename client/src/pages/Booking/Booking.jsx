@@ -36,6 +36,19 @@ const Booking = () => {
     return response.data;
   }
 
+  //post function
+  const postAppt = async () => {
+    const formattedDate = date.format("MMMM DD YYYY");
+    const response = await Axios.post("http://localhost:3001/api/newAppt", {
+      HCN: HCN,
+      Date: formattedDate,
+      Time: time,
+      Prac_id: selectedPrac,
+      Rnumber: 100 //need to make this dynamic somehow
+    })
+    console.log(response);
+  }
+
   //handle click for selecting practitioner
   const selectPrac = (ID, name, type) => {
     console.log(ID, name, type)
@@ -75,7 +88,8 @@ const Booking = () => {
       console.log("not booked")
       return
     }
-    console.log(typeof HCN)
+
+    postAppt();
     console.log("booked appointment:", HCN, time, date.format("MMMM DD YYYY"), selectedPrac)
   }
   //load doctors and nurses on mount
