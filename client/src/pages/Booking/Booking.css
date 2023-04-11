@@ -15,6 +15,7 @@
 
 .pracSelect{
   display: grid;
+  width: 100%;
   gap: 10px;
   background-color: yellow;
   padding: 2em;
@@ -24,6 +25,7 @@
 @media only screen and (max-width: 700px) {
   /*For mobile screens*/
   .pracSelect {
+    
     display: grid;
     background-color: yellow;
     padding: 2em;
@@ -40,7 +42,7 @@
 .datepicker * {
   margin: 10px;
 }
-.thingy {
+.viewTimes {
   width: 100px;
 }
 .availableBookingContainer{
@@ -51,3 +53,4 @@
   padding: 1em;
   border-radius: 0.5em;
 }
+
