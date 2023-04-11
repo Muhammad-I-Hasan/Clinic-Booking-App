@@ -44,6 +44,7 @@ export default function Login() {
         <h2 className="loginTitle">
           Welcome To Taffy's Medical Clinic
         </h2>
+        {<div>{error}</div>}
         <form className="loginForm" onSubmit={handleSubmit}>
           <TextField
             type="number"

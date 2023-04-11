@@ -7,7 +7,7 @@ const useLogin = () =>{
   const [isLoading, setIsLoading] = useState(null);
   const { dispatch } = useAuthContext();
   const location = useLocation()
-  const prev = location.state?.prevLocation
+  const prev = location.state?.prevLocation ? location.state?.prevLocation: "/"
   // console.log(prev)
   // console.log("about to login")
   // console.log(state)
@@ -35,9 +35,8 @@ const useLogin = () =>{
     );
     
     const json = await response.json();
-    var temp = JSON.stringify(json)
-
-    
+    // var temp = JSON.stringify(json)
+    //   console.log(temp)
     // if (response.ok && temp.length === 0){
     //   console.log("creating new patient")
     //   response = await fetch(
@@ -55,6 +54,10 @@ const useLogin = () =>{
     // console.log(json)
 
 
+    if(json.length ===0){
+      setIsLoading(false);
+      setError("Enter Valid HealthCard");
+    }
     if (!response.ok) {
       setIsLoading(false);
       setError(json.message);
@@ -63,7 +66,7 @@ const useLogin = () =>{
 
 
 
-    if(response.ok){
+    if(response.ok && json.length !== 0){
         // sessionStorage.setItem("user", JSON.stringify(json));
         dispatch({ type: "LOGIN", payload: json[0] });
         
