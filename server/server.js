@@ -25,8 +25,10 @@ app.use(cors(corsOptions));
 
 app.use(express.json())
 
+
 app.use("/doctors", doctorRoutes)
 app.use("/patients", patientRoutes)
+
 
 //get all doctors
 // app.get("/api/doctors", (req,res) => {
@@ -54,11 +56,13 @@ app.get("/api/nurses", (req,res) => {
 
 //returns booked appointments for that prac and date
 //this can be used to subrtact from cosntant times and find available space
-app.get("/api/bookedAppts", (req, res) => {
-    const prac_ID = req.body.prac_id;
-    const date = req.body.date;
+app.get("/api/bookedAppts/:id/:date", (req, res) => {
+    
+    const prac_id = req.params.id;
+    const date = req.params.date
+    
     const query = "SELECT Time FROM appointment WHERE Prac_ID = ? AND Date = ?";
-    db.query(query, [prac_ID, date], (err,result) => {
+    db.query(query, [prac_id, date], (err,result) => {
         if (err) { 
             console.log(err);
         } else {
@@ -67,6 +71,7 @@ app.get("/api/bookedAppts", (req, res) => {
         }
     });
 })
+
 
 //create a new patient with given info if needed
 // app.post("/api/newpatient", (req, res) => {

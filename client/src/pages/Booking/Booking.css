@@ -35,8 +35,14 @@
   padding: 5em;
   display: flex;
   justify-content: center;
+  width: 100%;
 }
-
+.datepicker * {
+  margin: 10px;
+}
+.thingy {
+  width: 100px;
+}
 .availableBookingContainer{
   text-align: center;
   background-color: red;
