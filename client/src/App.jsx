@@ -4,7 +4,7 @@ import Home from "./pages/Home"
 import Booking from "./pages/Booking/Booking"
 import Login from './pages/Login/Login'
 import SignUp from "./pages/SignUp/SignUp"
-import Manage from "./pages/Manage"
+import Manage from "./pages/Manage/Manage"
 import { Routes, Route } from "react-router-dom";
 import Topbar from "./components/Topbar"
 import DoctorView from './pages/DoctorView/DoctorView'

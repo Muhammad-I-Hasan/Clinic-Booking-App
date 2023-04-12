@@ -5,7 +5,8 @@ const {
   getPatients,
   createPatient,
   loginPatient,
-
+  getPatientApptsWDR,
+  getPatientApptsWNR,
 
   
 } = require("../controllers/patientController");
@@ -18,6 +19,8 @@ router.get("/", getPatients);
 //get a single patient based on patient id
 router.get("/:HCN", getPatient);
 
+router.get("/appts/dr/:HCN", getPatientApptsWDR);
+router.get("/appts/nr/:HCN", getPatientApptsWNR);
 //create a new patient
 router.post("/", createPatient);
 router.post("/login", loginPatient);

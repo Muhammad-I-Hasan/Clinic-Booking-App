@@ -60,6 +60,31 @@ const createPatient = async (req, res) => {
 
 }
 
+const getPatientApptsWDR = (req, res) => {
+  const { HCN } = req.params;
+  const query = "SELECT * FROM appointment, doctor WHERE HCN = ? AND appointment.Prac_ID = doctor.ID;";
+  db.query(query, [HCN], (err, result) => {
+      if (err) { 
+          console.log(err);
+      } else {
+          console.log(result);
+          res.send(result);
+      }
+  });
+}
+
+const getPatientApptsWNR = (req, res) => {
+  const { HCN } = req.params;
+  const query = "SELECT * FROM appointment, nurse WHERE HCN = ? AND appointment.Prac_ID = nurse.ID;";
+  db.query(query, [HCN], (err, result) => {
+      if (err) { 
+          console.log(err);
+      } else {
+          console.log(result);
+          res.send(result);
+      }
+  });
+}
 
 const loginPatient = async (req,res) =>{
 
@@ -81,4 +106,4 @@ const updatePatient = (req, res) =>{
 
 }
 
-module.exports = { getPatient, getPatients, createPatient, loginPatient }
+module.exports = { getPatient, getPatients, createPatient, loginPatient, getPatientApptsWDR, getPatientApptsWNR }
