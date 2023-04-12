@@ -19,16 +19,18 @@
     border: 0.2em solid black;
     border-radius: 1em;
     padding: 1em;
-    width: 80%;
+    width: clamp(18rem, 80%, 30rem);
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
+    ;
   
   }
 
 .infobox1 * {
   font-size: 1.2em;
+  overflow-wrap: break-word;
 }
 
 .infoHome {
