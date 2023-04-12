@@ -47,7 +47,8 @@ const Booking = () => {
       Date: formattedDate,
       Time: time,
       Prac_id: selectedPrac,
-      Rnumber: 100 //need to make this dynamic somehow
+      Rnumber: 100, //need to make this dynamic somehow
+      record_id: HCN
     })
     console.log(response);
   }

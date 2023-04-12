@@ -21,8 +21,8 @@ const newAppt = (req, res) => {
     const Date = req.body.Date;
     const Prac_id = req.body.Prac_id;
     const Rnumber = req.body.Rnumber;
-    const query = "INSERT INTO appointment (HCN, Time, Date, Prac_ID, RNumber) VALUES (?,?,?,?,?)";
-    db.query(query, [HCN, Time, Date, Prac_id, Rnumber], (err, result) => {
+    const query = "INSERT INTO appointment (HCN, Time, Date, Prac_ID, RNumber, Record_ID) VALUES (?,?,?,?,?,?)";
+    db.query(query, [HCN, Time, Date, Prac_id, Rnumber, HCN], (err, result) => {
         if (err) { 
             console.log(err);
         } else {
