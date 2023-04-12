@@ -15,6 +15,7 @@ const Booking = () => {
   const [loaded1, setLoaded1] = useState(false);
   const [loaded2, setLoaded2] = useState(false);
   const [avail, setAvail] = useState([]);//show available times for selected date and practitioner
+  const [bookable, setBookable] = useState(true);
 
   const [name, setName] = useState("");
   const [selectedPrac, setSelectedPrac] = useState(null);//selected practitioner
@@ -93,6 +94,7 @@ const Booking = () => {
     }
 
     postAppt();
+    setBooked(true);
     console.log("booked appointment:", HCN, time, date.format("MMMM DD YYYY"), selectedPrac)
   }
   //load doctors and nurses on mount
@@ -119,6 +121,15 @@ const Booking = () => {
     if(user !== null)
       setHCN(String(user.HCN))
   }, [user])
+
+  useEffect(() => {
+    if(selectedPrac && date && time && HCN) {
+      setBookable(false)
+    } else {
+      setBookable(true)
+    }
+  }, [selectedPrac, date, time, HCN])
+
   return (
     <div className="bookingBody">
 
@@ -164,7 +175,7 @@ const Booking = () => {
 
       {/* only show input when previous inputs have been selected. Not sure if we want to keep this*/}
       
-      <form className="subForm" onSubmit={(e)=>{ e.preventDefault();bookAppointment();}}>
+      <form className="subForm" onSubmit={(e)=>{bookAppointment();}}>
         <TextField 
           label="Health Card Number" 
           helperText="Enter a valid 7 digit HCN" 
@@ -174,7 +185,7 @@ const Booking = () => {
             inputMode: 'number', 
             pattern: '[0-9]{7}' 
         }} />
-        <button className="book">Book Appointment</button>
+        <button disabled={bookable} className="book">Book Appointment</button>
       </form>
       
     </div>
