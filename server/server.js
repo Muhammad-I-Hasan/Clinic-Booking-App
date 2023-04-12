@@ -25,6 +25,7 @@ app.use("/doctors", doctorRoutes)
 app.use("/patients", patientRoutes)
 app.use("/appt", apptRoutes)
 
+//kinda cringe but whatever
 app.get("/api/nurses", (req,res) => {
     const query = "SELECT * FROM nurse";
     db.query(query, (err, result) => {

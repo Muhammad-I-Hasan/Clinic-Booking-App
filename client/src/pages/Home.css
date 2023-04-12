@@ -27,6 +27,12 @@
   
   }
 
-  .info{
-    margin-top: 1em;
-  }
+.infobox1 * {
+  font-size: 1.2em;
+}
+
+.infoHome {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;    
+}
