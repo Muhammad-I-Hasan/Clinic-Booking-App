@@ -1,0 +1,32 @@
+.all{
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.welcome{
+    margin-top: 1em;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.infobox1{
+    background-color: aliceblue;
+    margin-top: 3em;
+    margin-left: auto;
+    margin-right: auto;
+    border: 0.2em solid darkgray;
+    border-radius: 1em;
+    padding: 1em;
+    width: 80%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+  
+  }
+
+  .info{
+    margin-top: 1em;
+  }
