@@ -41,7 +41,7 @@ export default function SignUp() {
     //temporary fix
     await signUp(formInputs.healthCard, formInputs.name, formInputs.phone, formInputs.address);
 
-    // navigate(-1);
+     navigate("/");
 
 
   };

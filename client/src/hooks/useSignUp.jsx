@@ -39,7 +39,7 @@ const useSignUp = () =>{
       dispatch({ type: "LOGIN", payload: json[0] });
       setIsLoading(false);
       console.log("navigating to + " + prev)
-      navigate(prev);
+      navigate("/");
     }
 
   }
