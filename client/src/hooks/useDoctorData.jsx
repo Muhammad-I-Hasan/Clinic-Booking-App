@@ -25,7 +25,7 @@ export default function useDoctorData  ()  {
     const json = await response.json();
     if (json.length === 0) {
       setIsLoading(false);
-      setError("Enter Valid ID");
+      // setError("Enter Valid ID");
       setState([])
     }
     if (!response.ok) {
@@ -35,6 +35,7 @@ export default function useDoctorData  ()  {
 
     }
     if(response.ok && json.length !== 0){
+      setError();
       setState(json)
       // console.log(json[0])
     }
@@ -66,6 +67,26 @@ export default function useDoctorData  ()  {
     console.log(resData)
   }
 
-  return { error, isLoading, login, submitComment }
+  const removeAppointment = async (id,hcn,room) =>{
+    const data = {
+      Prac_ID:id,
+      HCN:hcn,
+      RNumber:room,
+    }
+
+    console.log (  "CALLED TO: " + `http://localhost:3001/doctors/appointments/`)
+    const response = await fetch(
+      `http://localhost:3001/doctors/appointments`,
+      {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      }
+    );
+
+
+  }
+
+  return { error, isLoading, login, submitComment, removeAppointment }
 
 }

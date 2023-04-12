@@ -17,6 +17,7 @@
 }
 
 .patientBookingContainer{
+  position:relative;
   aspect-ratio: 25 / 20 ;
   background-color: lightblue;
   width: 45vmin;
@@ -30,3 +31,9 @@
   padding: 0.5em;
 }
 
+.close{
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 1em;  
+}
