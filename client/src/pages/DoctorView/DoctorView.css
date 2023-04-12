@@ -1,0 +1,32 @@
+.doctorViewContainer {
+  display:flex;
+  justify-content: start;
+  align-items: center;
+  flex-flow: column nowrap;
+
+}
+
+.doctorLoginView {
+  margin-top: 5em;
+}
+.doctorLoginTitle {
+  margin-bottom: 1em;
+}
+.IDfield{
+  margin-bottom: 1em;
+}
+
+.patientBookingContainer{
+  aspect-ratio: 25 / 20 ;
+  background-color: lightblue;
+  width: 45vmin;
+  border-radius: 1em;
+
+  border: 1px solid;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-flow: column nowrap;
+  padding: 0.5em;
+}
+

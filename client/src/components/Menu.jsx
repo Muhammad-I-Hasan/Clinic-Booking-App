@@ -21,6 +21,7 @@ const Menu = () => {
         <Button href="/">Home</Button>
         <Button href="/booking">Book an Appointment</Button>
         <Button href="/manage">Manage an Appointment</Button>
+        <Button href="/doctorview">Doctor manage</Button>
       </Drawer>
     </>
   ) 

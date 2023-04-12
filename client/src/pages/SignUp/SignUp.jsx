@@ -14,7 +14,6 @@ import dayjs from "dayjs";
 
 export default function SignUp() {
   const navigate = useNavigate()
-  useLogin()
   const [formInputs, setinput] = useState({
     healthCard: "",
     phone: "",

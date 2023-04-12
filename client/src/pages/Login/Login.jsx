@@ -13,7 +13,6 @@ import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const navigate = useNavigate()
-  useLogin()
   const [formInputs, setinput] = useState({
     healthCard: "",
   });

@@ -49,6 +49,10 @@ export const AuthContextProvider = ({ children }) => {
         if (location.pathname == "/signup") {
           navigate("/signup", {state: {prevLocation: location.pathname == "/signUp" || location.pathname == "/login" ? "/": location.pathname}})
         }
+        if (location.pathname == "/doctorview"){
+          navigate("/doctorview", {state: {prevLocation: location.pathname == "/doctorview" ? "/": location.pathname}})
+        }
+
         else {
           navigate("/login" , {state: {prevLocation: location.pathname == "/login" || location.pathname == "/signUp" ? "/": location.pathname}})
         }
