@@ -8,6 +8,7 @@ return (
     
     <h4>HCN: {props.HCN}</h4>
     <h4>Practitioner: {props.Name}</h4>
+    <h4>Department: {props.Dep ? props.Dep : "Check up"}</h4>
     <h4>Room Number: {props.RNumber}</h4>
     <button onClick={props.onClick}className="cancelAppt">Cancel Appointment</button>
 
