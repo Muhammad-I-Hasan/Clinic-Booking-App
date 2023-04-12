@@ -63,7 +63,6 @@ const Manage = () => {
               HCN={appt.HCN} 
               Name={appt.Name}
               Dep={appt.Specialization} 
-              RNumber={appt.RNumber}
               onClick={()=>handleCancelAppt(appt.Time, appt.Date, appt.HCN, appt.Prac_ID)} 
               />)}
              
