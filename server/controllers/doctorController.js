@@ -39,13 +39,10 @@ const getAppointments = async (req, res) => {
 }
 
 const updateAppointment = async (req, res) => {
-  const { } = req.params;
-  const { Prac_ID, HCN, RNumber, Comment } = req.body;
-  // console.log(Comment)
-  // console.log("poggies")
-  query = "UPDATE appointment SET Comments = ? WHERE HCN = ? AND Prac_ID = ? AND RNumber = ? ;"
+  const { Time, Date, Prac_ID, HCN, Comment } = req.body;
+  query = "UPDATE appointment SET Comments = ? WHERE Time = ? AND Date = ? AND Prac_ID = ? AND HCN = ? ;"
 
-  db.query(query, [Comment, HCN, Prac_ID, RNumber], (err, result) => {
+  db.query(query, [Comment, Time, Date, Prac_ID, HCN], (err, result) => {
     if (err) {
       console.log(err);
     } else {
@@ -57,9 +54,9 @@ const updateAppointment = async (req, res) => {
 }
 
 const removeAppointment = async (req, res) => {
-  const { Prac_ID, HCN, RNumber } = req.body;
-  query = "DELETE FROM appointment WHERE HCN = ? AND Prac_ID = ? AND RNumber = ? ;"
-  db.query(query, [HCN, Prac_ID, RNumber], (err, result) => {
+  const {  Time, Date, Prac_ID, HCN } = req.body;
+  query = "DELETE FROM appointment WHERE Time = ? AND Date = ? AND Prac_ID = ? AND HCN = ?;"
+  db.query(query, [Time,Date, Prac_ID, HCN], (err, result) => {
     if (err) {
       console.log(err);
     } else {

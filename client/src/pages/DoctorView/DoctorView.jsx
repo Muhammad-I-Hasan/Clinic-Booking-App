@@ -131,11 +131,11 @@ const PatientBooking = ({index, setArray, array, Time, Date, HCN, Name,Room, Com
   const [comments, SetComments] = useState(Comments)
   const submitForm = async(e) => {
     e.preventDefault()
-    await submitComment(ID,HCN, Room, comments)
+    await submitComment(Time,Date,ID,HCN, comments)
 
   }
   const handleCloseClick = async(e) =>{
-    await removeAppointment(ID,HCN, Room)
+    await removeAppointment(Time, Date, ID,HCN)
     await login(ID, setArray);
 
   }

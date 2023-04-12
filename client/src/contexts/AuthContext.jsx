@@ -46,10 +46,11 @@ export const AuthContextProvider = ({ children }) => {
           navigate("/login", {state: {prevLocation: location.pathname}});
           
         }
-        if (location.pathname == "/signup") {
+        else if (location.pathname == "/signup") {
+          console.log("pig")
           navigate("/signup", {state: {prevLocation: location.pathname == "/signUp" || location.pathname == "/login" ? "/": location.pathname}})
         }
-        if (location.pathname == "/doctorview"){
+        else if (location.pathname == "/doctorview"){
           navigate("/doctorview", {state: {prevLocation: location.pathname == "/doctorview" ? "/": location.pathname}})
         }
 

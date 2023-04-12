@@ -42,12 +42,12 @@ export default function useDoctorData  ()  {
     
   }
 
-  const submitComment = async (id,hcn,room,comment) => {
-    
+  const submitComment = async (time, date, id,hcn,comment) => {
     const data = {
+      Time: time,
+      Date:date,
       Prac_ID:id,
       HCN:hcn,
-      RNumber:room,
       Comment:comment
     }
     
@@ -64,14 +64,15 @@ export default function useDoctorData  ()  {
 
 
     const resData = await response.json();
-    console.log(resData)
+    // console.log(resData)
   }
 
-  const removeAppointment = async (id,hcn,room) =>{
+  const removeAppointment = async (time, date, id,hcn) =>{
     const data = {
+      Time:time,
+      Date:date,
       Prac_ID:id,
       HCN:hcn,
-      RNumber:room,
     }
 
     console.log (  "CALLED TO: " + `http://localhost:3001/doctors/appointments/`)
@@ -83,6 +84,7 @@ export default function useDoctorData  ()  {
         body: JSON.stringify(data)
       }
     );
+    const resData = await response.json();
 
 
   }
