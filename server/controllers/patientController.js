@@ -101,6 +101,21 @@ const cancelAppointment = async (req, res) => {
 
 }
 
+const createRecord = async (req,res) =>{
+
+  const { HCN } = req.body;
+
+  const query = "INSERT INTO patient_record (HCN, Record_ID) VALUES(?,?)";
+  db.query(query,[HCN, HCN], (err, result) => {
+    if (err) {
+    console.log(err);
+    } else {
+      console.log(result)
+      res.send(result);
+    }
+  })
+}
+
 const loginPatient = async (req,res) =>{
 
 
@@ -121,4 +136,4 @@ const updatePatient = (req, res) =>{
 
 }
 
-module.exports = { getPatient, getPatients, createPatient, loginPatient, getPatientApptsWDR, getPatientApptsWNR, cancelAppointment }
+module.exports = { getPatient, getPatients, createPatient, loginPatient, getPatientApptsWDR, getPatientApptsWNR, cancelAppointment, createRecord }

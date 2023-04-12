@@ -31,15 +31,24 @@ const useSignUp = () =>{
     if (!response.ok) {
       setIsLoading(false);
       setError(json.message);
-    }
+    } 
 
     if (response.ok) {
       console.log('hello')
+
+      //create a record when a use is created
+      await fetch("http://localhost:3001/patients/record",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ HCN }),
+      })
+
       // sessionStorage.setItem("user", JSON.stringify(json[0]));
       dispatch({ type: "LOGIN", payload: json[0] });
       setIsLoading(false);
       console.log("navigating to + " + prev)
-      navigate("/");
+      //navigate("/");
     }
 
   }

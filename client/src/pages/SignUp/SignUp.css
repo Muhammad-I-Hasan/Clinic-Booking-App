@@ -39,7 +39,7 @@
 
 .signUpContainer{
   width: 100%;
-  /* height: 100dvh; */
+  min-height: 100%;
   display:flex;
   justify-content: center;
   align-items: center;
@@ -50,5 +50,9 @@
   /*For mobile screens*/
   .signUp {
     width: 90%;
+  }
+/* ghetto fix for white area */
+  .signUpContainer{
+    height: 100vh;
   }
 }

@@ -48,7 +48,6 @@ export default function SignUp() {
   return (
     <div className="signUpContainer">
       
-
       <div className="signUp">
       <div className="closeIcon">
         <img
