@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import {useAuthContext} from "../../hooks/useAuthContext"
 import Axios from "axios"
 import ApptInfo from "../../components/ApptInfo";
+import "./Manage.css"
 
 const Manage = () => {
   
@@ -38,10 +39,21 @@ useEffect(()=> {
     <div>
       <div>Patient Name: {user && user.Name}</div>
       <div>Patient HCN: {user && user.HCN}</div>
-      {loaded && appts.map((appt, index) => 
-          <button key={index}>{appt.Date}</button>)}
-      <button onClick={()=> {console.log(appts);}}>Hello</button>
-      <ApptInfo />
+      <div className="apptBody">
+        <div className="apptSelect">
+          {loaded && appts.map((appt, index) => 
+            <ApptInfo 
+              key={index} 
+              Time={appt.Time} 
+              Date={appt.Date} 
+              HCN={appt.HCN} 
+              Name={appt.Name} 
+              RNumber={appt.RNumber} 
+              />)}
+             
+        </div>
+      </div>
+      
     </div>
   ) 
 }

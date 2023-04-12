@@ -1,0 +1,32 @@
+
+.apptSelect {
+    justify-content: center;
+    display: grid;
+    gap: 10px;
+    background-color: yellow;
+    padding: 2em;
+    grid-template-columns: 1fr 1fr 1fr ;
+}
+
+.apptInfoContainer {
+    background-color: lightblue;
+    /* width: 45vmin; */
+    border-radius: 1em;
+    border: 1px solid;
+    display: flex;
+    flex-flow: column;
+    padding: 1em;
+
+  }
+
+  @media only screen and (max-width: 700px) {
+    /*For mobile screens*/
+    .apptSelect {
+      
+      display: grid;
+      background-color: yellow;
+      padding: 2em;
+      grid-template-columns: 1fr;
+      grid-auto-flow: row;
+    }
+  }

@@ -1,14 +1,14 @@
 const ApptInfo = (props) => {
 
 return (
-  <div className="patientBookingContainer">
+  <div className="apptInfoContainer">
 
-    <h3>Time: {props.Time}</h3>
-    <h5>Date: {props.Date}</h5>
+    <h2>Time: {props.Time}</h2>
+    <h2>Date: {props.Date}</h2>
     
     <p>HCN: {props.HCN}</p>
-    <p>Name: {props.Name}</p>
-    <p>Room: {props.Room}</p>
+    <p>Practitioner: {props.Name}</p>
+    <p>Room Number: {props.RNumber}</p>
 
 
   </div>
