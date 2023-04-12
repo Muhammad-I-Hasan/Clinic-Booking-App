@@ -1,5 +1,5 @@
-import { Button, Typography, AppBar, Toolbar } from "@mui/material"
-
+import { Button, Typography, AppBar, Toolbar, IconButton } from "@mui/material"
+import HomeIcon from "@mui/icons-material/Home"
 import Menu from "./Menu"
 import { Outlet } from "react-router-dom";
 
@@ -13,7 +13,9 @@ const Topbar = () => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Taffy's Clinic
           </Typography>
-          <Button href="/" color="inherit">Home</Button>
+          <IconButton href="/" color='inherit' aria-label='logo'>
+            <HomeIcon fontSize="large"/>
+          </IconButton> 
         </Toolbar>
       </AppBar>
       <Outlet />
