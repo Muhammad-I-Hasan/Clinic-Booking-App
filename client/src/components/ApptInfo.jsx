@@ -2,14 +2,14 @@ const ApptInfo = (props) => {
 
 return (
   <div className="apptInfoContainer">
-
+    
     <h2>Time: {props.Time}</h2>
     <h2>Date: {props.Date}</h2>
     
-    <p>HCN: {props.HCN}</p>
-    <p>Practitioner: {props.Name}</p>
-    <p>Room Number: {props.RNumber}</p>
-
+    <h4>HCN: {props.HCN}</h4>
+    <h4>Practitioner: {props.Name}</h4>
+    <h4>Room Number: {props.RNumber}</h4>
+    <button onClick={props.onClick}className="cancelAppt">Cancel Appointment</button>
 
   </div>
 )

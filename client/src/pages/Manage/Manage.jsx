@@ -17,23 +17,39 @@ const Manage = () => {
     return await Axios.get("http://localhost:3001/patients/appts/nr/" + user.HCN)
   }
   
-useEffect(()=> {
-  console.log("useeff", user);
-  if (user !== null) {
-    (async () => {
-      const temp = await fetchPatientApptsWDR();
-      const temp2 = await fetchPatientApptsWNR();
-      setAppts([...temp.data,...temp2.data]);
-      //setAppts()
-      setLoaded(true)
-    })();
-    // (async () => {
-    //   const temp = await fetchPatientApptsWNR();
-    //   setAppts(appts.push(...await temp.data));
-    //   setLoaded(true)
-    // })();
+  const cancelAppt = async (Time, Date, HCN, Prac_ID) => {
+    const response = await Axios.delete("http://localhost:3001/patients/appt", {
+      data: {
+        Time: Time,
+        Date: Date,
+        HCN: HCN,
+        Prac_ID: Prac_ID
+      }
+    })
+    console.log(response);
   }
-}, [user])
+  const handleCancelAppt = (Time, Date, HCN, Prac_ID) => {
+    console.log(Time, Date, HCN, Prac_ID)
+    cancelAppt(Time, Date, HCN, Prac_ID);
+  }
+
+  useEffect(()=> {
+    console.log("useeff", user);
+    if (user !== null) {
+      (async () => {
+        const temp = await fetchPatientApptsWDR();
+        const temp2 = await fetchPatientApptsWNR();
+        setAppts([...temp.data,...temp2.data]);
+        //setAppts()
+        setLoaded(true)
+      })();
+      // (async () => {
+      //   const temp = await fetchPatientApptsWNR();
+      //   setAppts(appts.push(...await temp.data));
+      //   setLoaded(true)
+      // })();
+    }
+  }, [user])
 
   return (
     <div>
@@ -41,14 +57,15 @@ useEffect(()=> {
       <div>Patient HCN: {user && user.HCN}</div>
       <div className="apptBody">
         <div className="apptSelect">
-          {loaded && appts.map((appt, index) => 
+          {loaded && appts.map((appt) => 
             <ApptInfo 
-              key={index} 
+              key={appt.Prac_ID} 
               Time={appt.Time} 
               Date={appt.Date} 
               HCN={appt.HCN} 
               Name={appt.Name} 
-              RNumber={appt.RNumber} 
+              RNumber={appt.RNumber}
+              onClick={()=>handleCancelAppt(appt.Time, appt.Date, appt.HCN, appt.Prac_ID)} 
               />)}
              
         </div>

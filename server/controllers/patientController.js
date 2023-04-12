@@ -86,6 +86,21 @@ const getPatientApptsWNR = (req, res) => {
   });
 }
 
+const cancelAppointment = async (req, res) => {
+  const { Time, Date, HCN, Prac_ID } = req.body;
+  console.log("body", req.body)
+  query = "DELETE FROM appointment WHERE Time = ? AND Date = ? AND HCN = ? AND Prac_ID = ?;"
+  db.query(query, [Time, Date, HCN, Prac_ID], (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(result)
+      res.send(result);
+    }
+  })
+
+}
+
 const loginPatient = async (req,res) =>{
 
 
@@ -106,4 +121,4 @@ const updatePatient = (req, res) =>{
 
 }
 
-module.exports = { getPatient, getPatients, createPatient, loginPatient, getPatientApptsWDR, getPatientApptsWNR }
+module.exports = { getPatient, getPatients, createPatient, loginPatient, getPatientApptsWDR, getPatientApptsWNR, cancelAppointment }
