@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import useSignUp from "../../hooks/useSignUp"
 import { MobileDatePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
+import close from "../../assets/close.svg"
 
 export default function SignUp() {
   const navigate = useNavigate()
@@ -46,8 +47,17 @@ export default function SignUp() {
   };
   return (
     <div className="signUpContainer">
+      
 
       <div className="signUp">
+      <div className="closeIcon">
+        <img
+          className="close"
+          onClick={()=> navigate("/")}
+          src={close}
+          alt=""
+        />
+        </div>
         <h2 className="signUpTitle">
           Sign Up To Taffy's Medical Clinic
         </h2>

@@ -20,9 +20,11 @@
 
 .signUpTitle{
   text-align: center;
+  margin-top: 2em;
 }
 
 .signUp{
+  position: relative;
   background-color: aliceblue;
   border: 0.2em solid coral;
   border-radius: 1em;

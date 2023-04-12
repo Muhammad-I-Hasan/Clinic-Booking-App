@@ -10,6 +10,8 @@ import { Navigate } from "react-router-dom";
 // import "../SignUp.css";
 // import { useLogin } from "../hooks/useLogin";
 import { useNavigate } from "react-router-dom";
+import close from "../../assets/close.svg"
+
 
 export default function Login() {
   const navigate = useNavigate()
@@ -40,6 +42,14 @@ export default function Login() {
     <div className="loginContainer">
 
       <div className="login">
+      <div className="closeIcon">
+        <img
+          className="close"
+          onClick={()=> navigate("/")}
+          src={close}
+          alt=""
+        />
+        </div>
         <h2 className="loginTitle">
           Welcome To Taffy's Medical Clinic
         </h2>
