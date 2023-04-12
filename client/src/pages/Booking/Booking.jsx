@@ -165,7 +165,7 @@ const Booking = () => {
       {/* display available times for that dr and date */}
       {/* These can be replaced with availableBooking component made below but we dont need to dispaly dr date or room since they already have knowledge of that */}
       <div className="timesTitle"><h1>Available Times</h1></div>
-      <div class="timeSection">
+      <div className="timeSection">
         <div className="availTimes">
             {avail && avail.map((time,index) => (
               <button className="timeButton" key={time} onClick={()=>setTime(time)}>{time}</button>
