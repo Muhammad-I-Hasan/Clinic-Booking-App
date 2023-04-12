@@ -43,11 +43,7 @@ const Manage = () => {
         //setAppts()
         setLoaded(true)
       })();
-      // (async () => {
-      //   const temp = await fetchPatientApptsWNR();
-      //   setAppts(appts.push(...await temp.data));
-      //   setLoaded(true)
-      // })();
+      
     }
   }, [user])
 

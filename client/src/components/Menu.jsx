@@ -19,9 +19,9 @@ const Menu = () => {
           </Typography>
         </Box>
         <Button href="/">Home</Button>
-        <Button href="/booking">Book an Appointment</Button>
-        <Button href="/manage">Manage an Appointment</Button>
-        <Button href="/doctorview">Doctor manage</Button>
+        <Button href="/booking">Book An Appointment</Button>
+        <Button href="/manage">Manage Your Appointments</Button>
+        <Button href="/doctorview">For Doctors</Button>
       </Drawer>
     </>
   ) 
