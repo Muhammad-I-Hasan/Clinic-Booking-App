@@ -4,6 +4,7 @@ import useDoctorData from "../../hooks/useDoctorData"
 import { useNavigate } from "react-router-dom";
 import "./DoctorView.css"
 import { Button, TextField } from "@mui/material";
+import close from "../../assets/close.svg"
 export default function DoctorView() {
   const navigate = useNavigate()
   const [formInputs, setinput] = useState({
@@ -24,7 +25,6 @@ export default function DoctorView() {
     // console.log(formInputs);
 
 
-    //temporary fix
     await login(formInputs.ID, setData);
 
     // navigate(-1);
@@ -47,7 +47,9 @@ export default function DoctorView() {
               return (
                 // <div> pog </div>
                 <PatientBooking
-
+                  index = {index}
+                  setArray={setData}
+                  array={data}
                   key={index}
                   ID={booking.Prac_ID}
                   Time={booking.Time}
@@ -73,6 +75,7 @@ export default function DoctorView() {
           Please enter your Id
         </h2>
         {<div>{error}</div>}
+
         <form className="loginForm" onSubmit={handleSubmit}>
           <TextField
             type="number"
@@ -121,21 +124,34 @@ export default function DoctorView() {
 
 
 
-const PatientBooking = ({ Time, Date, HCN, Name,Room, Comments, ID }) => {
-  // console.log(props)
-  const {submitComment} = useDoctorData()
+const PatientBooking = ({index, setArray, array, Time, Date, HCN, Name,Room, Comments, ID }) => {
+  console.log(array)
+  // console.log("key + " + key)
+  const {submitComment, login, removeAppointment} = useDoctorData()
   const [comments, SetComments] = useState(Comments)
-  const submitForm = (e) => {
+  const submitForm = async(e) => {
     e.preventDefault()
-    submitComment(ID,HCN, Room, comments)
+    await submitComment(ID,HCN, Room, comments)
+
+  }
+  const handleCloseClick = async(e) =>{
+    await removeAppointment(ID,HCN, Room)
+    await login(ID, setArray);
 
   }
   return (
     <div className="patientBookingContainer">
-
+      <div className="closeIcon">
+        <img
+          className="close"
+          onClick={handleCloseClick}
+          src={close}
+          alt=""
+        />
+      </div>
       <h3>Time: {Time}</h3>
       <h5>Date: {Date}</h5>
-      
+
       <p>HCN: {HCN}</p>
       <p>Name: {Name}</p>
       <p>Room: {Room}</p>
@@ -143,7 +159,7 @@ const PatientBooking = ({ Time, Date, HCN, Name,Room, Comments, ID }) => {
       <form onSubmit={submitForm}>
         <TextField
           className="comments"
-          value={comments}
+          value={comments ? comments: ""}
           onChange={(e) => {
             SetComments(e.target.value)
           }}
