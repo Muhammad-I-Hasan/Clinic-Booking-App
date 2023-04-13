@@ -55,9 +55,9 @@ const Manage = () => {
       <h1 className="info">HCN: {user && user.HCN}</h1>
       <div className="apptBody">
         <div className="apptSelect">
-          {loaded && appts.map((appt) => 
+          {loaded && appts.map((appt, index) => 
             <ApptInfo 
-              key={appt.Prac_ID} 
+              key={index} 
               Time={appt.Time} 
               Date={appt.Date} 
               HCN={appt.HCN} 
