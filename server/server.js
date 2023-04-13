@@ -36,6 +36,20 @@ app.get("/api/nurses", (req,res) => {
         }
     });
 })
+app.get("/api/rooms/:date/:time", (req,res) => {
+    const date = req.params.date
+    const time = req.params.time
+    const query = "SELECT number FROM Room WHERE number NOT IN (SELECT RNumber FROM Appointment WHERE Date = ? AND Time = ?)";
+    db.query(query,[date,time], (err, result) => {
+        if (err) { 
+            console.log(err);
+        } else {
+            res.send(result);
+        }
+    });
+})
+
+
 app.get("/", (req,res) => { 
     res.send("hello");
 })

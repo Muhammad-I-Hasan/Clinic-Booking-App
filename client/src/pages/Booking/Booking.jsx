@@ -42,12 +42,15 @@ const Booking = () => {
   //post function
   const postAppt = async () => {
     const formattedDate = date.format("MMMM DD YYYY");
+    const availableRooms = await Axios.get("http://localhost:3001/api/rooms/" + formattedDate + "/" + time)
+    const availableRoom = await availableRooms.data[0].number;
+    console.log("avialble rooms", await availableRooms.data)
     const response = await Axios.post("http://localhost:3001/appt/newAppt", {
       HCN: HCN,
       Date: formattedDate,
       Time: time,
       Prac_id: selectedPrac,
-      Rnumber: 100, //need to make this dynamic somehow
+      Rnumber: availableRoom, //need to make this dynamic somehow
       record_id: HCN
     })
     console.log(response);
