@@ -50,7 +50,7 @@ CREATE TABLE `appointment` (
 
 LOCK TABLES `appointment` WRITE;
 /*!40000 ALTER TABLE `appointment` DISABLE KEYS */;
-INSERT INTO `appointment` VALUES ('11:20 am','April 15 2023',4842485,101,100,NULL,NULL),('11:20 pm','April 15',7953696,104,105,NULL,NULL),('3:30 pm','April 13 2023',4842485,201,100,NULL,NULL);
+INSERT INTO `appointment` VALUES ('11:00 am','April 15 2023',4842485,101,100,4842485,NULL),('2:00 pm','April 15 2023',7953696,104,105,7953696,NULL),('3:30 pm','April 13 2023',4842485,201,100,4842485,NULL);
 /*!40000 ALTER TABLE `appointment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -133,7 +133,7 @@ CREATE TABLE `doctor` (
 
 LOCK TABLES `doctor` WRITE;
 /*!40000 ALTER TABLE `doctor` DISABLE KEYS */;
-INSERT INTO `doctor` VALUES (101,1,'Shayan Malik','GP'),(102,2,'Tawfiq Nasim','Orthopedic'),(103,3,'Reginald Topher','Immunology'),(104,4,'Sarah June','Dermatologist'),(105,1,'Abhari Limbu','GP');
+INSERT INTO `doctor` VALUES (101,1,'Shayan Malik','GP'),(102,2,'Tawfiq Nasim','Orthopedic'),(103,3,'Reginald Topher','Immunology'),(104,4,'Sarah June','Dermatologist'),(105,1,'Sia Olabode','GP');
 /*!40000 ALTER TABLE `doctor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -210,6 +210,7 @@ CREATE TABLE `patient_record` (
 
 LOCK TABLES `patient_record` WRITE;
 /*!40000 ALTER TABLE `patient_record` DISABLE KEYS */;
+INSERT INTO `patient_record` VALUES (4842485,4842485),(7953696,7953696);
 /*!40000 ALTER TABLE `patient_record` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -303,4 +304,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-09 23:23:32
+-- Dump completed on 2023-04-12 20:20:30
