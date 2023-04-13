@@ -1,5 +1,9 @@
 # Clinic-Booking-App
 
+
+
+## How to run the app
+
 To run the application first install the SQL database by running the query provided in DB folder
 
 This is a node project so you need to run npm install on both client directory and server directory
