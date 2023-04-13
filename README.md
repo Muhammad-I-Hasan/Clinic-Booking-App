@@ -1,6 +1,6 @@
 # Clinic-Booking-App
 
-
+This medical clinic booking application provides a simple user and mobile friendly interface to book and manage their appointments at the clinic. Patients at the clinic can login or signup with an account and access or create new bookings. This interface also allows for practitioners at the clinic to manage their appointements or edit the patient history on file.
 
 ## How to run the app
 
