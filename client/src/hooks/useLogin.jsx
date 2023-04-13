@@ -72,7 +72,7 @@ const useLogin = () =>{
         
         // setIsLoading(false);
         // console.log("about to navigate")
-        navigate(prev);
+        navigate("/");
     }
 
 

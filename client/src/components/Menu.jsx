@@ -14,14 +14,14 @@ const Menu = () => {
     
       <Drawer anchor='left' open={isOpen} onClose={() => setIsOpen(false)}>
         <Box p={2} width='250px' textAlign='center'>
-          <Typography variant='h6' component='div'>
+          <Typography style={{ fontSize: "3em" }}variant='h6' component='div'>
             Menu
           </Typography>
         </Box>
-        <Button href="/">Home</Button>
-        <Button href="/booking">Book an Appointment</Button>
-        <Button href="/manage">Manage an Appointment</Button>
-        <Button href="/doctorview">Doctor manage</Button>
+        <Button style={{ color: '#2E3B55', fontSize: "1em"  }} href="/">Home</Button>
+        <Button style={{ color: '#2E3B55', fontSize: "1em" }} href="/booking">Book An Appointment</Button>
+        <Button style={{ color: '#2E3B55', fontSize: "1em" }} href="/manage">Manage Your Appointments</Button>
+        <Button style={{ color: '#2E3B55', fontSize: "1em" }} href="/doctorview">For Doctors</Button>
       </Drawer>
     </>
   ) 

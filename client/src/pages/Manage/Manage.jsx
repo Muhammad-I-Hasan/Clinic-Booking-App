@@ -8,6 +8,7 @@ const Manage = () => {
   
   const [appts, setAppts] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [change, setChange] = useState(false);
   const { user } = useAuthContext();
   //appointment with a dr
   const fetchPatientApptsWDR = async () => {
@@ -31,7 +32,8 @@ const Manage = () => {
   const handleCancelAppt = (Time, Date, HCN, Prac_ID) => {
     console.log(Time, Date, HCN, Prac_ID)
     cancelAppt(Time, Date, HCN, Prac_ID);
-  }
+    setChange(!change);
+    }
 
   useEffect(()=> {
     console.log("useeff", user);
@@ -43,18 +45,14 @@ const Manage = () => {
         //setAppts()
         setLoaded(true)
       })();
-      // (async () => {
-      //   const temp = await fetchPatientApptsWNR();
-      //   setAppts(appts.push(...await temp.data));
-      //   setLoaded(true)
-      // })();
+      
     }
-  }, [user])
+  }, [user,change, !change])
 
   return (
-    <div>
-      <div>Patient Name: {user && user.Name}</div>
-      <div>Patient HCN: {user && user.HCN}</div>
+    <div className="manageBody">
+      <h1 className="info">Name: {user && user.Name}</h1>
+      <h1 className="info">HCN: {user && user.HCN}</h1>
       <div className="apptBody">
         <div className="apptSelect">
           {loaded && appts.map((appt) => 
@@ -65,7 +63,6 @@ const Manage = () => {
               HCN={appt.HCN} 
               Name={appt.Name}
               Dep={appt.Specialization} 
-              RNumber={appt.RNumber}
               onClick={()=>handleCancelAppt(appt.Time, appt.Date, appt.HCN, appt.Prac_ID)} 
               />)}
              

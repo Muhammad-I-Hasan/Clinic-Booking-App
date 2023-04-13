@@ -14,7 +14,7 @@ const Home = () => {
 
       <div className="infobox1">
         <h2>Contact Information</h2>
-        <div className="info"> 
+        <div className="infoHome"> 
           <h3>Address: 2205 51 ST SW, Calgary</h3>
           <h3>Phone number: (403) 222-3145</h3>
           <h3>Email: inquires@taffyclinic.com</h3>

@@ -8,6 +8,7 @@ const {
   getPatientApptsWDR,
   getPatientApptsWNR,
   cancelAppointment,
+  createRecord,
 
   
 } = require("../controllers/patientController");
@@ -25,8 +26,8 @@ router.get("/appts/nr/:HCN", getPatientApptsWNR);
 //create a new patient
 router.post("/", createPatient);
 router.post("/login", loginPatient);
-
-router.delete("/appt", cancelAppointment)
+router.post("/record", createRecord);
+router.delete("/appt", cancelAppointment);
 
 
 module.exports = router;

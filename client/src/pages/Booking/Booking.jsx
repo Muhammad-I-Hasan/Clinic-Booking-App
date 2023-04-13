@@ -6,15 +6,18 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
 import Axios from "axios"
 import { useState, useEffect } from "react"
+import { useAuthContext } from "../../hooks/useAuthContext"
 
 const Booking = () => {
-
+  const { user } = useAuthContext();
   const [doctors, setDoctors] = useState([]);
   const [nurses, setNurses] = useState([]);
   const [loaded1, setLoaded1] = useState(false);
   const [loaded2, setLoaded2] = useState(false);
   const [avail, setAvail] = useState([]);//show available times for selected date and practitioner
+  const [bookable, setBookable] = useState(true);
 
+  const [name, setName] = useState("");
   const [selectedPrac, setSelectedPrac] = useState(null);//selected practitioner
   const [date, setDate] = useState(dayjs());//selected date
   const [time, setTime] = useState(null);//selected date
@@ -32,19 +35,20 @@ const Booking = () => {
     const temp = date.format("MMMM DD YYYY");
     console.log("pracid",selectedPrac)
     console.log("date q",temp)
-    const response =  await Axios.get("http://localhost:3001/api/bookedAppts/" + selectedPrac + "/" + temp);
+    const response =  await Axios.get("http://localhost:3001/appt/bookedAppts/" + selectedPrac + "/" + temp);
     return response.data;
   }
 
   //post function
   const postAppt = async () => {
     const formattedDate = date.format("MMMM DD YYYY");
-    const response = await Axios.post("http://localhost:3001/api/newAppt", {
+    const response = await Axios.post("http://localhost:3001/appt/newAppt", {
       HCN: HCN,
       Date: formattedDate,
       Time: time,
       Prac_id: selectedPrac,
-      Rnumber: 100 //need to make this dynamic somehow
+      Rnumber: 100, //need to make this dynamic somehow
+      record_id: HCN
     })
     console.log(response);
   }
@@ -53,6 +57,7 @@ const Booking = () => {
   const selectPrac = (ID, name, type) => {
     console.log(ID, name, type)
     setSelectedPrac(ID);
+    setName(name);
     console.log(selectedPrac)
     //on click the available times should not be displayed
     //on click the selected time should be removed
@@ -90,6 +95,7 @@ const Booking = () => {
     }
 
     postAppt();
+    setBooked(true);
     console.log("booked appointment:", HCN, time, date.format("MMMM DD YYYY"), selectedPrac)
   }
   //load doctors and nurses on mount
@@ -112,13 +118,21 @@ const Booking = () => {
     }
   }, [])
 
+  useEffect(() => {
+    if(user !== null)
+      setHCN(String(user.HCN))
+  }, [user])
+
+  useEffect(() => {
+    if(selectedPrac && date && time && HCN) {
+      setBookable(false)
+    } else {
+      setBookable(true)
+    }
+  }, [selectedPrac, date, time, HCN])
 
   return (
     <div className="bookingBody">
-      {/* temporary for displaying info */}
-      {selectedPrac && <div>Selected Prac: {selectedPrac}</div>}
-      {date && <div>Selected Date: {date.format("MMMM DD YYYY")}</div>}
-      {time && <div>Selected Time: {time}</div>}
 
       <div className="pracSelect">
         {/* {loading up all the doctors from the database} */}
@@ -137,9 +151,11 @@ const Booking = () => {
             spec="Check up" 
             onClick={()=> selectPrac(nurse.ID, nurse.Name, "Check up")}/>)}
       </div>
-
+      {<div className="selections"><h1>Selected Prac: {selectedPrac ? name : ""}</h1></div>}
       <div className="datepicker">
-        <MobileDatePicker 
+        <MobileDatePicker
+          disablePast={true}
+          label="Select a date" 
           value={date} 
           onChange={(e)=> {setDate(e); setAvail(null)}}/>
         {/* button displays available tiems once a date and dr are selected */}
@@ -148,15 +164,19 @@ const Booking = () => {
       
       {/* display available times for that dr and date */}
       {/* These can be replaced with availableBooking component made below but we dont need to dispaly dr date or room since they already have knowledge of that */}
-      <div className="availTimes">
+      <div className="timesTitle"><h1>Available Times</h1></div>
+      <div className="timeSection">
+        <div className="availTimes">
             {avail && avail.map((time,index) => (
-              <button className="deez" key={time} onClick={()=>setTime(time)}>{time}</button>
+              <button className="timeButton" key={time} onClick={()=>setTime(time)}>{time}</button>
             ))}
+        </div>
       </div>
+      {<div className="selections"><h1>Selected Time: {time && time}</h1></div>}
 
       {/* only show input when previous inputs have been selected. Not sure if we want to keep this*/}
-      {(date && time) && 
-      <form className="subForm" onSubmit={()=>{bookAppointment();}}>
+      
+      <form className="subForm" onSubmit={(e)=>{bookAppointment();}}>
         <TextField 
           label="Health Card Number" 
           helperText="Enter a valid 7 digit HCN" 
@@ -166,48 +186,11 @@ const Booking = () => {
             inputMode: 'number', 
             pattern: '[0-9]{7}' 
         }} />
-        <button className="book">Book Appointment</button>
-      </form>}
-      {/* <button onClick={()=>console.log(avail)}>button</button> */}
+        <button disabled={bookable} className="book">Book Appointment</button>
+      </form>
+      
     </div>
   ) 
 }
 
-// const AvailableBooking = () =>{
-//   return (
-
-//     <div className="availableBookingContainer">
-//         <h3>Date: </h3>
-//         <h4> Doctor: </h4>
-//         <h5>Room: </h5>
-//     </div>
-
-//   )
-// }
-
-
 export default Booking
-
-// return (
-//   <div className="booking">
-//     <div className="bookingContainer"> 
-    
-//       <div className="pracSelect">
-//         <PracButton name="Dr one one" speciality="foot specialist"/>
-//         <PracButton name="Dr two two" speciality="toe specialist"/>
-//         <PracButton name="Dr three three" speciality="fungus specialist"/>
-//         <PracButton name="Dr four four" speciality="general practitioner"/>
-//       </div>
-
-//       <div className="datepicker">
-//           <MobileDatePicker defaultValue={dayjs('2022-04-17')} />
-//       </div>
-
-//       <div className="availableBookings">
-//       <AvailableBooking/>
-
-//       </div>
-
-//     </div>
-//   </div>
-// ) 
